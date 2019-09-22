@@ -1,0 +1,56 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+      
+      if(!Notification){
+        alert('Não tem suporte essa merda');
+        return;
+      }
+    
+      if(Notification.Permission !== "granted"){
+        Notification.requestPermission();
+      }
+  });
+
+  function minhaNotificacao(){
+     
+      if (Notification.Permission !== "granted"){
+          Notification.requestPermission();
+      }else{
+          var notificacao = new Notification("Eu Berinho", {
+              icon : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAwFBMVEX////+aXpFS1T+/v44SlK5XGotNkE4P0m5ur3+Wm3+Z3g/Rk/+ZHb+Y3VCSFFDS1Tg4eL+c4P/q7T++fpNVF3u7/Btcnk1PkiLkJWhpKjY2do9SlNma3L19vZPTVbXYnH/k5/Hycusr7LzZ3jNYG9XTliBhYqcn6SMVWH/nqn/wcj+8PKjWWb+hJFwUl3jZHT/1Nj+4eRcYmp6fYNTWmP/tLz/yM7/4OT+l6H+fYuqWmd9VF+XV2P/pK66bXqIVWBVJR5NAAAHT0lEQVR4nO2da3eaTBCANRqBUAEVREWMmgSjxvutps3b//+v3l1SYDE5ieBehM7zpecYbw/LzuwinSkUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADIEyV2iFZDuJZljLy1qdsVuti6ufZGhmW5IvVKRqfdtW1J1bQb+miaKtl2t90xRA2lNRg2VYmFW8xTUpvDgSXCT/ZMSWWs944qmZ7M27Ekb0yV9fBFaKq5GXAVtDyefn8dW/yGsSTfMAkt3zneyJxCjtuq8PfzHSstLqnD2khC/DDShsOZajQ/BFCcuFjwSZpVmwZ3QWRnNr3RcCjTZTgceU2UjzTOikY3LqjZ25bcMSyXfgwouZbRkVtbO+6odpkqWnFBzV7LgRybRTfSlNdxR7XLcC66MUFN2souC7cTT1fextaGapdZRC15ZBRVzZHLWC+QdEcmeWglj1VelCuxIzng4vfuOIidPRWZjaBlEueK5hm8/HxHwyM/3GQzFVvEYdTQIpGjIFK0WoSi2mIhONhqxCdwFvQVoyOsbTv0Ba1N9AGqx10QK3qEokc/nsrRLMRJl7sgnotRuNFM6sGGOICaORAhiBQHxFH2aAebgRmlo7YYQaTYjs5Tk/Kev9QOk722LQkzLEXRThrSTfvGOnprWZQgUpSjA72muwLvEO/ssjD85vODZ7nEkaaaMNzoJJVkJmLT6WG53E8mu109YIeY7PfL5WrVCJ83jL5Im2bCsJpRtqeSKYI3bqz2k/p4djwea5jiB/yHa+jv/XF9slxNrTDiaVR3UVZ45NTWZSep/3boX6S2+1mrVn8g7mJEdvHH7/BTqw/PTjiINA2NcFchDS6zazSm0+Xu5/GHguzuPo7Zt9yXg69SoRlqwrMfLwhT6zWmq+VkPKsqyC2N3LthTw/zBT3BUrjoVTdppiF+j+kSn5ZKuoEjWMwDQ7VFLyOWwgtsKTYV+PWHfb1/vLvYDvPwEkxErUnRMFxK4BCdUK+Bpt2sRsXO5zaYiJpJ0TA4Mfy1UqLR24+PteIF0+4LwxudoqEdGZ4piF/WWL4VTxIAVUObomGULM5blOK4ifSUKl25E8OKKEP0gulqd2Sidw2G6Nmr/bjGSE+8Ic579dkdOz/Bhshv10fDx9BPqCHyq8+K1PLetRmiZ03farQzw/UYouxw6LMKnldgiIbvMFZ+8NATYvi+dqly8hNgiP0YZj/hhoXCgWV2F26I88PxSz8G8hwN0eOTWvFLheqe/vKGmyEOMF+PH0IplOpFZrsntoZoe9RXvv3qCnrxalyj6sjHEE3ASe2MBIHGEB2L/c8ixWTJxRCdoP2zxkUp/D0cM3rTkYchiqDnDGBgiB1XO2o5hb1hobCfnTuxlDAuNQ5jSrORvWHj7fxZFRqeF3qvw/BQS7ADVIj1AU6fNC4rMjYs/1dL8h2V2BoPhRwKmYO14W2ib6OcrNMLheXFmeO6DXEcnvQvu9Bx7YY4c0wuyhxXb4jvGTm83aU/VTNg6F/VmX2/qM2woe+4T5J1smfoO9bTZY6sGKa/AJIdQxxy9v3k2TFLhu/7qqTTMVOGeBjxvirPhnhftTrjckiWDRPvq7Jn6Dvuzs8cWTT0F6tnZ45sGr7vq87bembVEA/jLNeGeR/DvM/DvMfS3OfDvK9p8r4uzf3eIu/7Q3+Pn+JaTVYM836dBt8Anudrbbm/XooyRK6veef+d4u8//aU998P8/4bcFZ+x09rmJl7MdIaZud+mnSGWbonKo1htu5rS2GYsXsTExtm7v7S5GOYtXuEExpm8D7vhIYZvFc/qSEDwBAMwRAMwRAMwRAMwfDfNbSv0pBmfRr9Kg1p1hgK60RdkyHVOlFhrS/n5UGwIKNaX2G9Nn2+EGzIpl5bVHNP790LNmRTc4+om1gWbsimbmJU+9J5FjsRWdW+tLpBMNV1sRNxoQcnKd36pUQN2vKjUMPH8CSlW4OWqCOsPwk1fIoKHNItPE/UghY6iNEQapS7sRD1vIUO4lOsRiVViJrszqswwdcwkFKvyU7W1dd7os7TxzDbM6irT/ZGcOaCBKNzlEFvhIK1iUp6O39EpH0i2aMhZNAvqBNV7ded3/wVH3470RCy6FES6zMjQJEUZNRnJtYrSHeeORs+E4KsegXF+j3pzpxnRH2cE4LM+j2d9Oxyei/cBF96DvHJ7Hp2nfRd050en6s2tz1yAG/UJsNOlie98/Ty0+OCbch5WDw+lUk/tr3zPvY/1Mu95/v7BZs942Jxf//ci/ux7n/4SQ9L3Sn35r9eb+nz+mveKztxPyFtOvG+3ymzwNH104/iIPgP9JL9B/oB+z2dOfes9v349XRGWK189+XGDHLeWx1hyZ4pfQirTFClrSfzHcC/joNhU5VYD6Qmqc3hQIQfpmR02l3b/qyBNg03TZVsu9vuGPwCzCe4lmWMvPVWtyt0sfVt1xsZlsUpQXzJp/+Jkg6i1QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAoMr/b9QRFcn6ke0AAAAASUVORK5CYII=',
+              body : 'Foi o daniel que fez' 
+          })
+
+          notificacao.onclick = function() {
+              window.open('https://www.infobr.com.br');
+          };
+      }
+  }
+</script>
+<!-- <div class="containner"> -->
+  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <a class="navbar-brand" routerLink="/" >Contatos</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/" >Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="minhaNotificacao()">Sobre</a>
+        </li> 
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search"
+          name="busca"
+           [(ngModel)]='termo'>
+         <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+          (click)="refreshBusca(termo)"
+         >Pesquisar</button> 
+      </form>
+    </div>
+  </nav>
+<!-- </div> -->
+
+
+<router-outlet></router-outlet>  
+<contato-busca [(busca)]="termo"></contato-busca>
